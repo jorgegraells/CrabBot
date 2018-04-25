@@ -93,4 +93,12 @@
 
 </LinearLayout>
 
+    <TextView
+        android:id="@+id/IdBufferIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dato: "
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
 </LinearLayout>
