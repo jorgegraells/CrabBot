@@ -1,17 +1,19 @@
 package com.example.user.crabbot;
 
-import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.*;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,14 +27,14 @@ public class UserInterfaz extends AppCompatActivity {
     //-----------------------------------------------------------
     Handler bluetoothIn;
     int handlerState = 0;
-    private BluetoothAdapter btAdapter = null;
-    private BluetoothSocket btSocket = null;
+    private BluetoothAdapter btAdapter;
+    private BluetoothSocket btSocket;
     private StringBuilder DataStringIN = new StringBuilder();
     private ConnectedThread MyConexionBT;
     //Identificador unico de servicio - SPP UUID
     private static final UUID BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     //String para la direccion MAC
-    private static String address = null;
+    private static String address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,13 +157,26 @@ public class UserInterfaz extends AppCompatActivity {
             btSocket = createBluetoothSocket(device);
         } catch (IOException e) {
             Toast.makeText(getBaseContext(), "La creacción del socket fallo", Toast.LENGTH_LONG).show();
-            try {
-                btSocket.close();
-            } catch (IOException e2) {  }
         }
 
 
-        MyConexionBT = new ConnectedThread(btSocket);
+            try {
+                btSocket.connect();
+            } catch (IOException e) {
+                try {
+                    btSocket.close();
+                } catch (IOException e2) {
+                    e.printStackTrace();
+                }
+            }
+
+
+
+        try {
+            MyConexionBT = new ConnectedThread(btSocket);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         MyConexionBT.start();
 
     }
@@ -185,10 +200,9 @@ public class UserInterfaz extends AppCompatActivity {
         private InputStream mmInStream;
         private OutputStream mmOutStream;
 
-        public ConnectedThread(BluetoothSocket socket){
+        public ConnectedThread(BluetoothSocket socket) throws IOException {
             InputStream tmpIn = null;
             OutputStream tmpOut = null;
-
 
             try {
                 tmpIn = socket.getInputStream();
@@ -199,7 +213,7 @@ public class UserInterfaz extends AppCompatActivity {
 
         }
 
-       public void run(){
+     public void run(){
             byte[] buffer = new byte[256];
             int bytes;
 
@@ -209,18 +223,19 @@ public class UserInterfaz extends AppCompatActivity {
                try {
                    bytes = mmInStream.read(buffer);
                    String readMessage = new String(buffer, 0, bytes);
+                   Log.d("Coche","Recibo coche: "+readMessage);
                    //Envia los datos obtenidos hacia el evento via handler
-                   bluetoothIn.obtainMessage(handlerState, bytes, -1, readMessage);
+                   bluetoothIn.obtainMessage(handlerState, bytes, -1, readMessage).sendToTarget();
                } catch (IOException e) {
                   break;
                }
            }
        }
-
        //Envio de trama
         public void write(String input){
             try {
                 mmOutStream.write(input.getBytes());
+                Log.d("Coche","Envio coche: "+input);
             } catch (IOException e) {
                 //si no es posible enviar datos se cierra la conexion
                 Toast.makeText(getBaseContext(), "La conexión fallo", Toast.LENGTH_LONG).show();
