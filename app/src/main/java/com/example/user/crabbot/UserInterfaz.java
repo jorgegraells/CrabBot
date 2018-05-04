@@ -22,11 +22,12 @@ import java.util.UUID;
 
 public class UserInterfaz extends AppCompatActivity {
 
-    ImageButton Up, Down, Left, Right, Light, Automatic, Crab;
+    ImageButton Up, Down, Left, Right, Light, Automatic, Crab, Stop;
     TextView BufferIn;
     //-----------------------------------------------------------
     Handler bluetoothIn;
     int handlerState = 0;
+    Boolean automatic=false;
     private BluetoothAdapter btAdapter;
     private BluetoothSocket btSocket;
     private StringBuilder DataStringIN = new StringBuilder();
@@ -45,6 +46,7 @@ public class UserInterfaz extends AppCompatActivity {
         Down = (ImageButton) findViewById(R.id.IdDown);
         Left = (ImageButton) findViewById(R.id.IdLeft);
         Right = (ImageButton) findViewById(R.id.IdRight);
+        Stop = (ImageButton) findViewById(R.id.IdStop);
         Light = (ImageButton) findViewById(R.id.IdLight);
         Automatic = (ImageButton) findViewById(R.id.IdAutomatic);
         Crab = (ImageButton) findViewById(R.id.IdCrab);
@@ -73,6 +75,13 @@ public class UserInterfaz extends AppCompatActivity {
         //Configuracion onClick listeners para los botones
         //para indicar que se realizara cuando se detecte
         //el evento de Click
+
+        Stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyConexionBT.write("0");
+            }
+        });
 
         Up.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,21 +114,28 @@ public class UserInterfaz extends AppCompatActivity {
         Light.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyConexionBT.write("0");
+                MyConexionBT.write("6");
             }
         });
 
         Automatic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyConexionBT.write("5");
+                if(automatic==false){
+                    MyConexionBT.write("a");
+                    automatic=true;
+                }else{
+                    MyConexionBT.write("m");
+                    automatic=false;
+                }
+
             }
         });
 
         Crab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyConexionBT.write("6");
+                MyConexionBT.write("7");
             }
         });
     }

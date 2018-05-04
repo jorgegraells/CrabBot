@@ -14,12 +14,12 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:text="CRABBOT"
         android:textColor="@color/white"
         android:textSize="30dp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="128dp"
-        tools:layout_editor_absoluteY="40dp" />
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +31,8 @@
             android:id="@+id/IdUp"
             android:layout_width="116dp"
             android:layout_height="88dp"
-            app:srcCompat="@android:drawable/arrow_up_float" />
+            app:srcCompat="@android:drawable/arrow_up_float"
+            android:layout_margin="0dp"/>
 
 
         <LinearLayout
@@ -39,29 +40,43 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
+            android:layout_margin="0dp"
+
             >
 
             <ImageButton
                 android:id="@+id/IdLeft"
                 android:layout_width="88dp"
                 android:layout_height="116dp"
-                android:layout_marginRight="140dp"
                 android:rotation="270"
+                android:layout_gravity="left"
+
                 app:srcCompat="@android:drawable/arrow_up_float" />
+
+            <ImageButton
+                android:id="@+id/IdStop"
+                android:layout_width="116dp"
+                android:layout_height="88dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="center"
+                app:srcCompat="@android:drawable/ic_media_pause" />
 
             <ImageButton
                 android:id="@+id/IdRight"
                 android:layout_width="88dp"
                 android:layout_height="116dp"
                 android:rotation="90"
+                android:layout_gravity="right"
                 app:srcCompat="@android:drawable/arrow_up_float" />
+
         </LinearLayout>
 
 
         <ImageButton
             android:id="@+id/IdDown"
-            android:layout_width="118dp"
-            android:layout_height="81dp"
+            android:layout_width="116dp"
+            android:layout_height="88dp"
             app:srcCompat="@android:drawable/arrow_down_float" />
 
     </LinearLayout>
@@ -83,7 +98,7 @@
         android:id="@+id/IdAutomatic"
         android:layout_width="120dp"
         android:layout_height="73dp"
-        app:srcCompat="@android:drawable/btn_star" />
+        app:srcCompat="@android:drawable/stat_sys_data_bluetooth" />
 
     <ImageButton
         android:id="@+id/IdCrab"
@@ -92,13 +107,9 @@
         app:srcCompat="@android:drawable/ic_lock_idle_charging" />
 
 </LinearLayout>
-
-    <TextView
-        android:id="@+id/IdBufferIn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Dato: "
-        android:textColor="@color/white"
-        android:textStyle="bold" />
+<TextView
+    android:id="@+id/IdBufferIn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
 
 </LinearLayout>
