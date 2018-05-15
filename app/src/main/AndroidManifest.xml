@@ -21,7 +21,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".UserInterfaz"></activity>
+        <activity android:name=".UserInterfaz"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+
+        </activity>
+
+
     </application>
 
 </manifest>

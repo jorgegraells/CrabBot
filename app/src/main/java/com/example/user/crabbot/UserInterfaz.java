@@ -23,6 +23,7 @@ import java.util.UUID;
 public class UserInterfaz extends AppCompatActivity {
 
     ImageButton Up, Down, Left, Right, Light, Automatic, Crab, Stop;
+    Button High, Intermediate, Low;
     TextView BufferIn;
     //-----------------------------------------------------------
     Handler bluetoothIn;
@@ -51,6 +52,9 @@ public class UserInterfaz extends AppCompatActivity {
         Automatic = (ImageButton) findViewById(R.id.IdAutomatic);
         Crab = (ImageButton) findViewById(R.id.IdCrab);
         BufferIn = (TextView) findViewById(R.id.IdBufferIn);
+        High = (Button) findViewById(R.id.IdHigh);
+        Intermediate = (Button) findViewById(R.id.IdIntermediate);
+        Low = (Button) findViewById(R.id.IdLow);
 
         bluetoothIn = new Handler(){
             public void handleMessage(android.os.Message msg){
@@ -136,6 +140,25 @@ public class UserInterfaz extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MyConexionBT.write("7");
+            }
+        });
+
+        Low.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyConexionBT.write("l");
+            }
+        });
+        Intermediate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyConexionBT.write("i");
+            }
+        });
+        High.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyConexionBT.write("h");
             }
         });
     }

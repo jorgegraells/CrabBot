@@ -7,67 +7,63 @@
     android:orientation="vertical"
     tools:context="com.example.user.crabbot.UserInterfaz"
     android:gravity="center"
-    android:background="@color/black">
+    android:background="@drawable/botones">
 
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="CRABBOT"
-        android:textColor="@color/white"
-        android:textSize="30dp"
-        android:textStyle="bold" />
+<ImageView
+    android:layout_width="150dp"
+    android:layout_height="100dp"
+    android:src="@drawable/logonuevo2"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <ImageButton
             android:id="@+id/IdUp"
             android:layout_width="116dp"
             android:layout_height="88dp"
-            app:srcCompat="@android:drawable/arrow_up_float"
-            android:layout_margin="0dp"/>
+            android:layout_margin="0dp"
+            android:background="@drawable/buttonsstyle"
+            app:srcCompat="@android:drawable/arrow_up_float" />
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
             android:layout_margin="0dp"
-
+            android:gravity="center"
+            android:orientation="horizontal"
             >
 
             <ImageButton
                 android:id="@+id/IdLeft"
                 android:layout_width="88dp"
                 android:layout_height="116dp"
-                android:rotation="270"
                 android:layout_gravity="left"
-
+                android:background="@drawable/buttonsstyle"
+                android:rotation="270"
                 app:srcCompat="@android:drawable/arrow_up_float" />
 
             <ImageButton
                 android:id="@+id/IdStop"
                 android:layout_width="116dp"
                 android:layout_height="88dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/buttonsstyle"
                 app:srcCompat="@android:drawable/ic_media_pause" />
 
             <ImageButton
                 android:id="@+id/IdRight"
                 android:layout_width="88dp"
                 android:layout_height="116dp"
-                android:rotation="90"
                 android:layout_gravity="right"
+                android:background="@drawable/buttonsstyle"
+                android:rotation="90"
                 app:srcCompat="@android:drawable/arrow_up_float" />
 
         </LinearLayout>
@@ -77,6 +73,7 @@
             android:id="@+id/IdDown"
             android:layout_width="116dp"
             android:layout_height="88dp"
+            android:background="@drawable/buttonsstyle"
             app:srcCompat="@android:drawable/arrow_down_float" />
 
     </LinearLayout>
@@ -91,6 +88,7 @@
         android:id="@+id/IdLight"
         android:layout_width="120dp"
         android:layout_height="73dp"
+        android:background="@color/trasparent"
         app:srcCompat="@android:drawable/ic_menu_compass" />
 
 
@@ -98,18 +96,62 @@
         android:id="@+id/IdAutomatic"
         android:layout_width="120dp"
         android:layout_height="73dp"
+        android:background="@color/trasparent"
         app:srcCompat="@android:drawable/stat_sys_data_bluetooth" />
 
     <ImageButton
         android:id="@+id/IdCrab"
         android:layout_width="120dp"
         android:layout_height="73dp"
+        android:background="@color/trasparent"
         app:srcCompat="@android:drawable/ic_lock_idle_charging" />
 
 </LinearLayout>
+
+<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="left">
+
+    <TextView
+        android:id="@+id/IdVelocidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Velicidad: "
+        android:layout_marginLeft="15dp"/>
+
+        <Button
+            android:id="@+id/IdLow"
+            android:layout_width="75dp"
+            android:layout_height="40dp"
+            android:textColor="@color/white"
+            android:background="@color/trasparent"
+            android:text="BAJA" />
+
+
+        <Button
+            android:id="@+id/IdIntermediate"
+            android:layout_width="75dp"
+            android:layout_height="40dp"
+            android:textColor="@color/white"
+            android:background="@color/trasparent"
+            android:text="MEDIA"  />
+
+        <Button
+            android:id="@+id/IdHigh"
+            android:layout_width="75dp"
+            android:layout_height="40dp"
+            android:textColor="@color/white"
+            android:background="@color/trasparent"
+            android:text="ALTA"  />
+
+ </LinearLayout>
 <TextView
     android:id="@+id/IdBufferIn"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
+    android:layout_height="wrap_content"
+    android:textColor="@color/white"/>
 
 </LinearLayout>
