@@ -6,5 +6,9 @@
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
     <color name="trasparent">#00ffffff</color>
-    <color name="background">#636363</color>
+    <color name="background">#d6131212</color>
+    <color name="boton">#da46025c</color>
+    <color name="low">#a7064614</color>
+    <color name="medium">#a0665e02</color>
+    <color name="high">#a16e0e03</color>
 </resources>
